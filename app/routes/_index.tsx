@@ -1,4 +1,4 @@
-import type { ActionFunctionArgs, MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
 import { Form, redirect } from "@remix-run/react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
@@ -12,16 +12,8 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export async function action({ request }: ActionFunctionArgs) {
-  console.log("alo?");
-  const formData = await request.formData();
-  const values = Object.fromEntries(formData);
-  const { email, password } = values;
-  if (email === "test@test.com" && password === "test") {
-    return redirect("/dashboard");
-  }
-
-  return null;
+export async function action() {
+  return redirect("/dashboard");
 }
 
 export default function Index() {
